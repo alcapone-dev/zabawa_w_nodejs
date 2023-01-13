@@ -1,0 +1,57 @@
+<h1>Lista firm</h1>
+<form>
+<%- include('partials/search') %>
+
+
+<% if (user) { %>
+    <div class="row">
+        <div class="row">
+            <a href="/admin/firmy/dodaj" class="btn btn-primary">Dodaj nowa firmę</a>
+        </div>
+    </div>
+<% } %>
+
+<div class="row">
+    <div class="col-3">
+
+
+        <%- include('partials/filters') %>
+
+
+    </div>
+
+    <div class="col-9">
+        <% companies.forEach(company => { %>
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="/uploads/<%- company.image %>" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-9">
+                            <p class="h3 mb-4"><%= company.name %></p>
+                            <p>Pracowników: <%= company.employeesCount %></p>
+                            <p>UserID: <%= company.user?._id %></p>
+                            <p>Kontakt: <%= company.user?.email %></p>
+                            <p>CEO: <%= company.user?.fullName %></p>
+                            <a href="/firmy/<%= company.slug %>" class="btn btn-primary">Zobacz</a>
+                            <% if (user) { %>
+                             <% if (user._id == company.user?._id) { %>
+                                 <a href="/admin/firmy/<%= company.slug %>/edytuj" class="btn btn-warning">Edytuj</a>
+                                 <a href="/admin/firmy/<%= company.slug %>/usun" onclick="return confirm('Czy jesteś pewny?')" class="btn btn-danger">Usuń</a>
+                             <% } %>
+                            <% } %>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    
+        <% }); %>    
+    </div>
+
+</div>
+
+<%- include('partials/paginations') %>
+
+</form>

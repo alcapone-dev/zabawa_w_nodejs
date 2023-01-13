@@ -1,0 +1,70 @@
+<form>
+<style>
+    .a {
+        text-decoration: none;
+    }
+</style>
+
+    <div class="row" style="text-transform: capitalize;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/oferty/">Wszystko</a></li>
+              <% if(search_params.country_slug) { %>
+              <li class="breadcrumb-item"><a href="/oferty/<%- search_params.country %>"><%- search_params.country_slug %></a></li>
+              <% } %>
+              <% if(search_params.region_slug) { %>
+              <li class="breadcrumb-item"><a href="/oferty/<%- search_params.country %>/<%- search_params.region %>"><%- search_params.region_slug %></a></li>
+              <% } %>
+              <% if(search_params.city_slug) { %>
+              <li class="breadcrumb-item active" aria-current="page"><%- search_params.city_slug %> </li>
+              <% } %>
+            </ol>
+          </nav>
+    </div>
+
+<div class="row">
+    <div class="col-3">
+<h5>Filtrowanie</h5>
+<div class="mb-3">
+    <label for="catering" class="form-label">Wyżywienie</label>
+            <select name="catering" id="catering" class="form-control">
+                <option value="all-inclusive">All  Inclusive</option>
+                <option value="hb">Śniadanie i obiadokolacje (HB)</option>
+                <option value="breakfasts">Śniadania</option>
+                <option value="own">Własne</option>
+                <option value="fb">Trzy posiłki</option>
+            </select>
+            <button class="btn btn-primary mt-2">Szukaj</button>
+        </div> 
+    </div>
+    <div class="col-9">
+        <% offers.forEach(offer => { %>
+            <a href="/oferty/<%- offer.country_slug %>/<%- offer.region_slug %>/<%- offer.city_slug %>/<%- offer.slug %>" style="text-decoration: none;">
+            <div class="card mb-3" style="max-height: 55%;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="/uploads/<%- offer.image %>" class="img-fluid rounded-start" style="min-height: 100%; min-width: 100%;" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <p class="p mt-2 mb-1" style="font-size: 0.75rem; line-height: 1.5rem; color: #3d3d3d; text-transform: capitalize;"><%- offer.country %> / <%- offer.region %> / <%- offer.city %></p>
+                      <h5 class="card-title"><%- offer.name %></h5>
+                      <p class="card-text mb-1" style="font-size: 0.75rem; line-height: 1.5rem; color: #3d3d3d;"><span width="1rem" height="1rem" role="img" aria-label="Termin wyjazdu" class="sc-1d6or6q-0 jpOgzT" style="width: 1rem; height: 1rem;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="sc-8bqss7-0 emCdmV"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.00067 4.24988C1.00067 3.28338 1.78417 2.49988 2.75067 2.49988H13.2507C14.2172 2.49988 15.0007 3.28338 15.0007 4.24988V13.2499C15.0007 14.2164 14.2172 14.9999 13.2507 14.9999H2.75067C1.78417 14.9999 1.00067 14.2164 1.00067 13.2499V4.24988ZM2.75067 3.99988C2.6126 3.99988 2.50067 4.11181 2.50067 4.24988V13.2499C2.50067 13.3879 2.6126 13.4999 2.75067 13.4999H13.2507C13.3887 13.4999 13.5007 13.3879 13.5007 13.2499V4.24988C13.5007 4.11181 13.3887 3.99988 13.2507 3.99988H2.75067Z" fill="#999999"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M5.00067 0.999878C5.41488 0.999878 5.75067 1.33566 5.75067 1.74988V2.74988C5.75067 3.16409 5.41488 3.49988 5.00067 3.49988C4.58646 3.49988 4.25067 3.16409 4.25067 2.74988V1.74988C4.25067 1.33566 4.58646 0.999878 5.00067 0.999878Z" fill="#999999"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.0007 0.999878C11.4149 0.999878 11.7507 1.33566 11.7507 1.74988V2.74988C11.7507 3.16409 11.4149 3.49988 11.0007 3.49988C10.5865 3.49988 10.2507 3.16409 10.2507 2.74988V1.74988C10.2507 1.33566 10.5865 0.999878 11.0007 0.999878Z" fill="#999999"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M1.25067 6.99988C1.25067 6.58566 1.58646 6.24988 2.00067 6.24988L14.0007 6.24988C14.4149 6.24988 14.7507 6.58566 14.7507 6.99988C14.7507 7.41409 14.4149 7.74988 14.0007 7.74988L2.00067 7.74988C1.58646 7.74988 1.25067 7.41409 1.25067 6.99988Z" fill="#999999"></path></svg></span>
+                        <%- offer.from_date.toLocaleDateString()  %> - <%- offer.to_date.toLocaleDateString() %></p>
+                    <p class="card-text mb-1" style="font-size: 0.75rem; line-height: 1.5rem; color: #3d3d3d;">7 dni</p>
+                    <p class="card-text mb-1" style="font-size: 0.75rem; line-height: 1.5rem; color: #3d3d3d;">Warszawa, Katowice, Wrocław (+1)</p>
+                      <p class="card-text mb-1" style="font-size: 0.75rem; line-height: 1.5rem; color: #3d3d3d;">All Inclusive</p>
+                      <p class="card-text mb-1" style="font-size: 0.75rem; line-height: 1.5rem; color: #3d3d3d;">Coral Travel</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </a>
+              <% }); %>   
+    
+ 
+    </div>
+
+
+
+</form>

@@ -1,0 +1,49 @@
+<form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="" class="form-label">Nazwa Firmy</label>
+        <input type="text" name="name" value="<%= form.name %>" class="form-control
+
+        <% if (errors?.name) { %>
+            is-invalid
+        <% } %>
+
+        " required>
+        <% if (errors?.name) { %>
+        <div class="invalid-feedback"><%= errors.name.message %></div>
+        <% } %>
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label">Zdjęcie profilowe</label>
+        <input type="file" name="image" class="form-control" id="image">
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label">Slug</label>
+        <input type="text" value="<%= form.slug %>" name="slug" class="form-control
+
+        <% if (errors?.slug) { %>
+            is-invalid
+        <% } %>
+
+        " required>
+        <% if (errors?.slug) { %>
+            <div class="invalid-feedback"><%= errors.slug.message %></div>
+            <% } %>
+        <div class="form-text">Przynajmniej 3 znaki</div>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Liczba pracowników</label>
+        <input type="text" value="<%= form.employeesCount %>" name="employeesCount" class="form-control" required>
+    </div>
+    <button class="btn btn-primary"><%- buttonText %></button>
+</form>
+
+
+<% if (errors) { %>
+
+<div class="alert alert-danger mt-3">
+Popraw dane w formularzu
+</div>
+
+<% } %>
