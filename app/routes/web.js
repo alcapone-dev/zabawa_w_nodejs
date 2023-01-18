@@ -5,6 +5,7 @@ const CompanyController = require('../controllers/company-controller');
 const PageController = require('../controllers/page-controller');
 const UserController = require('../controllers/user-controller');
 const OfferController = require('../controllers/offer-controller');
+const TweetController = require('../controllers/tweet-controller');
 
 const path = require('path');
 const multer = require('multer');
@@ -29,6 +30,8 @@ router.get('/oferty/:country_slug/:region_slug/:city_slug/:slug', OfferControlle
 
 router.get('/admin/oferty/dodaj', OfferController.showCreateOfferForm);
 router.post('/admin/oferty/dodaj', upload.single('image'), OfferController.createOffer);
+
+router.get('/tweets', TweetController.showTweets);
 
 
 router.get('/', PageController.showHome);
