@@ -1,0 +1,32 @@
+hello
+
+asd <%= tweet.createdBy?.email %>
+<div class="col-9 mt-5">
+        <div class="card bg-light mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <p><%= tweet.createdBy?.email %></p>
+                        <p class="h3 mb-4"><%= tweet.content %></p>
+                        <p class="h5 mb-4">Odpowiedzi</p>
+                        <% answer.forEach(answer => { %>
+                        <div class="col-9">
+                            <p><%= answer.createdBy?.email %></p>
+                            <p class="mb-2 mt-1"><%= answer.content %></p>
+                            <hr>
+                        </div>
+                        <% }); %>   
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+</div>
+
+<form method="POST">
+    <div class="mb-3">
+        <label for="answer" class="form-label">Odpowiedz</label>
+        <input type="text" name="answer" value="Zaćwierkaj coś..." class="form-control" required>
+    </div>
+    <button class="btn btn-primary">Tweet!</button>
+</form>

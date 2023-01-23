@@ -1,0 +1,28 @@
+<form method="POST">
+    <div class="mb-3">
+        <label for="tweet" class="form-label">Tweet</label>
+        <input type="text" name="tweet" value="Zaćwierkaj coś..." class="form-control" required>
+    </div>
+    <button class="btn btn-primary">Tweet!</button>
+</form>
+
+
+<div class="col-9 mt-5">
+        <% tweets.forEach(tweet => { %>
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-9">
+                            <p><%= tweet.createdBy?.email %></p>
+                            <p class="h3 mb-4"><%= tweet.content %></p>
+                            <p><%= tweet._id %></p>
+                            <a href="/tweets/<%= tweet._id %>">Wejdź</a>
+                            <p>Odpowiedzi: <%= answerCount.length %></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    
+        <% }); %>    
+    </div>

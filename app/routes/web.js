@@ -32,6 +32,10 @@ router.get('/admin/oferty/dodaj', OfferController.showCreateOfferForm);
 router.post('/admin/oferty/dodaj', upload.single('image'), OfferController.createOffer);
 
 router.get('/tweets', TweetController.showTweets);
+router.post('/tweets', TweetController.postTweet);
+
+router.get('/tweets/:_id', TweetController.showTweet);
+router.post('/tweets/:_id', TweetController.postTweetAnswer);
 
 
 router.get('/', PageController.showHome);
